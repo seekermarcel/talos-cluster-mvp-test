@@ -1,0 +1,13 @@
+# ArgoCD Helm values for local MVP cluster
+# Chart: argo-cd 9.4.15 (ArgoCD v3.3.4)
+
+configs:
+  params:
+    # Disable TLS on the server for local access
+    server.insecure: true
+
+server:
+  service:
+    type: NodePort
+    nodePortHttp: 30080
+    nodePortHttps: 30443

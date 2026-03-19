@@ -1,0 +1,32 @@
+# kube-prometheus-stack Helm values for local MVP cluster
+# Chart: kube-prometheus-stack 82.12.0
+
+grafana:
+  adminPassword: "admin"
+  service:
+    type: NodePort
+    nodePort: 30090
+
+prometheus:
+  prometheusSpec:
+    resources:
+      requests:
+        memory: 512Mi
+        cpu: 250m
+    retention: 7d
+    # No persistent storage for MVP
+    storageSpec: {}
+
+# Disable alertmanager for MVP
+alertmanager:
+  enabled: false
+
+# Talos-specific: these components are not exposed or not used on Talos
+kubeEtcd:
+  enabled: false
+kubeControllerManager:
+  enabled: false
+kubeScheduler:
+  enabled: false
+kubeProxy:
+  enabled: false
